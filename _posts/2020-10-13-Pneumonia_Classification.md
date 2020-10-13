@@ -360,6 +360,8 @@ model.summary()
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/output_image/summary_model.JPG" alt="linearly separable data">
 
+I Want to see conv2D layer in my model so I print it for I use next.
+
 ```python
 i=1
 for layer in model.layers:
@@ -370,7 +372,9 @@ for layer in model.layers:
         i=i+1
 ```
 
-## **visualisasi Layer Filter CNN ke 1**
+<img src="{{ site.url }}{{ site.baseurl }}/images/output_image/conv_layer.JPG" alt="linearly separable data">
+
+## **Visualization Layer Filter CNN 1**
 
 
 ```python
@@ -390,6 +394,10 @@ for i in range(8):
     ax.imshow(filter_1[:,:,i], cmap='gray')
 ```
 
+<img src="{{ site.url }}{{ site.baseurl }}/images/output_image/filter_layer1.JPG" alt="linearly separable data">
+
+I want to know the filter that cnn use in first conv2d
+
 ## **visualisasi Layer Filter CNN ke 2**
 
 
@@ -408,6 +416,10 @@ for i in range(8):
     ax = fig.add_subplot(1,8,i+1)
     ax.imshow(filter_2[:,:,i], cmap='gray')
 ```
+
+<img src="{{ site.url }}{{ site.baseurl }}/images/output_image/filter_layer2.JPG" alt="linearly separable data">
+
+as you can see filter in conv2D it's diffrent although the kernel and neuron it's a same. this is very interesting because CNN randomly setting a filter for every run model.
 
 ## **Hasil Implementasi filter CNN ke 1**
 
@@ -432,6 +444,10 @@ for i in range(8):
     ax.imshow(f1[0,:,:,i],cmap='gray')
 ```
 
+<img src="{{ site.url }}{{ site.baseurl }}/images/output_image/featuremap1.JPG" alt="linearly separable data">
+
+now you can see how filter change image in the first Conv2D layer 
+
 ## **Hasil Implementasi filter CNN ke 2**
 
 
@@ -448,9 +464,14 @@ for i in range(8):
     ax.imshow(f2[0,:,:,i],cmap='gray')
 ```
 
-# **Melatih Model pada Validation Set**
+<img src="{{ site.url }}{{ site.baseurl }}/images/output_image/featuremap1.JPG" alt="linearly separable data">
+
+you can see how filter change image in the second Conv2D layer. now, we can conclude that image change for every conv2d and for every epoch that we define.
+
+# **Training Model with Validation Set**
 
 
+settings for callbacks
 ```python
 filepath="weights_best.h5"
 checkpoint = ModelCheckpoint(filepath, monitor='val_accuracy', verbose=1, save_best_only=True, mode='max')
@@ -465,6 +486,8 @@ callbacks_list.append(TensorBoard(logdir, histogram_freq=1))
 history = model.fit(train_datagen.flow(feature_train,label_train, batch_size=4), validation_data=(feature_val, label_val), epochs = 25, verbose = 1, callbacks=callbacks_list)
 ```
 
+<img src="{{ site.url }}{{ site.baseurl }}/images/output_image/modelfit.JPG" alt="linearly separable data">
+
 
 ```python
 %load_ext tensorboard
@@ -472,7 +495,10 @@ history = model.fit(train_datagen.flow(feature_train,label_train, batch_size=4),
 %tensorboard --logdir logs
 ```
 
-# **Evaluasi Model Pada data test**
+<img src="{{ site.url }}{{ site.baseurl }}/images/output_image/tenserboard.JPG" alt="linearly separable data">
+
+
+# **Evaluate Model for Testing Datasets**
 
 
 ```python
@@ -480,12 +506,16 @@ print("Loss of the model is - " , model.evaluate(feature_test,label_test)[0])
 print("Accuracy of the model is - " , model.evaluate(feature_test,label_test)[1]*100 , "%")
 ```
 
+<img src="{{ site.url }}{{ site.baseurl }}/images/output_image/akurasitest.JPG" alt="linearly separable data">
+
 
 ```python
 predictions = np.argmax(model.predict(feature_test), axis=-1)
 predictions = predictions.reshape(1,-1)[0]
 predictions[:100]
 ```
+
+<img src="{{ site.url }}{{ site.baseurl }}/images/output_image/resultpredict.JPG" alt="linearly separable data">
 
 
 ```python
@@ -516,7 +546,11 @@ print('Classification report on test data')
 print(clas_r)
 ```
 
-# **Visualisasi Data Validation**
+<img src="{{ site.url }}{{ site.baseurl }}/images/output_image/cfmatrix_creport.JPG" alt="linearly separable data">
+
+Visualization for Confusion Matrix and Classification Report
+
+# **Visualization Data Validation**
 
 
 ```python
@@ -535,7 +569,13 @@ for i,x in enumerate(feature_val):
     plt.title('Predicted: {}, Real: {}'.format(label_val_hat[i], label_val[i]))
 ```
 
+<img src="{{ site.url }}{{ site.baseurl }}/images/output_image/visvalpred.JPG" alt="linearly separable data">
+
+as you can see in visualization above, how predict works and we can see label before and predict
+
 # **RUC-AUC Curve**
+
+AUC - ROC curve is a performance measurement for classification problem at various thresholds settings. ROC is a probability curve and AUC represents degree or measure of separability. It tells how much model is capable of distinguishing between classes.
 
 ## **Data Test**
 
@@ -563,6 +603,9 @@ plt.legend()
 plt.show()
 ```
 
+<img src="{{ site.url }}{{ site.baseurl }}/images/output_image/roc_test.JPG" alt="linearly separable data">
+
+
 ## **Data Train**
 
 
@@ -589,3 +632,6 @@ plt.legend()
 # show the plot
 plt.show()
 ```
+
+<img src="{{ site.url }}{{ site.baseurl }}/images/output_image/roc_train.JPG" alt="linearly separable data">
+
