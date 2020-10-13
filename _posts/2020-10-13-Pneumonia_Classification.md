@@ -233,7 +233,7 @@ plt.title('Validation data')
 plt.show()
 ```
 
-<img src="{{ site.url }}{{ site.baseurl }}/images/output_image/countlabel.jpg" alt="linearly separable data">
+<img src="{{ site.url }}{{ site.baseurl }}/images/output_image/countlabel.JPG" alt="linearly separable data">
 
 ```python
 plt.figure(figsize = (5,5))
