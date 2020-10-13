@@ -147,6 +147,7 @@ test = get_training_data(dataset_dir_test)
 val = get_training_data(dataset_dir_val)
 ```
 
+Print np array photo
 
 ```python
 train[0][0]
@@ -164,6 +165,8 @@ array([[61, 68, 75, ..., 26, 12,  0],
        [ 0,  0,  0, ...,  0,  0,  0]], dtype=uint8)
 ```
 
+Print label normal
+
 ```python
 labels[train[0][1]]
 ```
@@ -174,15 +177,19 @@ Output:
 NORMAL
 ```
 
+Print label pneumonia
+
 ```python
 labels[train[-1][1]]
 ```
+
 Output:
 
 ```python
 PNEUMONIA
 ```
 
+Change data to dataframe 
 
 ```python
 train_df = pd.DataFrame(train, columns=['image', 'label'])
@@ -212,7 +219,7 @@ Output:
 5215  [[3, 4, 9, 13, 18, 21, 21, 21, 24, 26, 30, 42,...     1
 ```
 
-# **Visualisasi Data**
+# **Visualization Data**
 
 
 ```python
@@ -235,6 +242,10 @@ plt.show()
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/output_image/countlabel.JPG" alt="linearly separable data">
 
+The data seems imbalanced . To increase the no. of training examples, we will use data augmentation
+
+Previewing the images of both the classes
+
 ```python
 plt.figure(figsize = (5,5))
 plt.imshow(train[0][0], cmap='gray')
@@ -245,8 +256,12 @@ plt.imshow(train[-1][0], cmap='gray')
 plt.title(labels[train[-1][1]])
 ```
 
+<img src="{{ site.url }}{{ site.baseurl }}/images/output_image/sample.JPG" alt="linearly separable data">
+
+
 # **Feature Engineering**
 
+We call compose function that we define in a cell before
 
 ```python
 feature_train, label_train = compose_dataset(train_df)
@@ -255,17 +270,19 @@ feature_val, label_val = compose_dataset(val_df)
 ```
 
 
+
 ```python
 print('Train data shape: {}, Labels shape: {}'.format(feature_train.shape, label_train.shape))
 print('Test data shape: {}, Labels shape: {}'.format(feature_test.shape, label_test.shape))
 print('Validation data shape: {}, Labels shape: {}'.format(feature_val.shape, label_val.shape))
 ```
 
+<img src="{{ site.url }}{{ site.baseurl }}/images/output_image/shape_data.JPG" alt="linearly separable data">
 
-```python
-print(label_val)
-```
+we can see the shape it's changing, its necessary if we want to procces it for CNN.
 
+# Data Augmentation
+In order to avoid overfitting problem, we need to expand artificially our dataset. We can make your existing dataset even larger. The idea is to alter the training data with small transformations to reproduce the variations. Approaches that alter the training data in ways that change the array representation while keeping the label the same are known as data augmentation techniques. Some popular augmentations people use are grayscales, horizontal flips, vertical flips, random crops, color jitters, translations, rotations, and much more. By applying just a couple of these transformations to our training data, we can easily double or triple the number of training examples and create a very robust model.
 
 ```python
 train_datagen = ImageDataGenerator(rotation_range = 30,  # randomly rotate images in the range (degrees, 0 to 180)
@@ -293,6 +310,16 @@ list_param=["rotation_range","zoom_range","width_shift_range","height_shift_rang
 for i in list_param:
     imagedatagenerator(i)
 ```
+
+<img src="{{ site.url }}{{ site.baseurl }}/images/output_image/image_aug.JPG" alt="linearly separable data">
+
+For the data augmentation, i choosed to :
+
+1. Randomly rotate some training images by 30 degrees
+2. Randomly Zoom by 20% some training images
+3. Randomly shift images horizontally by 10% of the width
+4. Randomly shift images vertically by 10% of the height
+5. Randomly flip images horizontally. Once our model is ready, we fit the training dataset.
 
 # **Model CNN**
 
@@ -331,6 +358,7 @@ model.compile(loss='categorical_crossentropy', optimizer=optimizer, metrics=['ac
 model.summary()
 ```
 
+<img src="{{ site.url }}{{ site.baseurl }}/images/output_image/summary_model.JPG" alt="linearly separable data">
 
 ```python
 i=1
