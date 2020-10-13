@@ -1,10 +1,10 @@
 ---
-layout: archive
-title: "Machine Learning Posts by Tags"
-permalink: /machine-learning/
+layout: posts
+permalink: /data-wrangling/
+title: "Data Wrangling projects"
 author_profile: true
 header:
-    image: "/images/testgambar.jpg"
+  image: "/images/fort point.png"
 ---
 
 

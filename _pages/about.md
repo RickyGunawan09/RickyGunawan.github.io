@@ -2,7 +2,9 @@
 title: "About"
 permalink: /about/
 header:
-    image: "/images/testgambar.jpg"
+  image: "/images/zakim.jpg"
 ---
 
-I'm a junior Data Scientist who excels at machine learning, deep learning and computer vision.
+I'm a senior data scientist who excels at data wrangling, machine learning, exploratory analysis, and data visualizations.
+
+Etc, etc, etc
