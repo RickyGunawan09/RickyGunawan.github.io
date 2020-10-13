@@ -8,6 +8,10 @@ excerpt: "Pneumonia,X-ray, data science, machine learning, Computer Vision"
 mathjax: "true"
 ---
 
+**Pneumonia**
+an acute disease that is marked by inflammation of lung tissue accompanied by infiltration of alveoli and often bronchioles with white blood cells (such as neutrophils) and fibrinous exudate, is characterized by fever, chills, cough, difficulty in breathing, fatigue, chest pain, and reduced lung expansion, and is typically caused by an infectious agent (such as a bacterium, virus, or fungus). The disease may be classified by where it was acquired, such as community- or hospital-acquired or healthcare-associated pneumonia.
+
+<img src="{{ site.url }}{{ site.baseurl }}/images/output_image/pneumonia.jpg" alt="linearly separable data">
 
 ```python
 zip_path = '/content/drive/My\ Drive/BCML/FinalProject/chest_xray_backup.zip'
