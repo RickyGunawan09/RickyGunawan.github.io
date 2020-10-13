@@ -13,6 +13,10 @@ an acute disease that is marked by inflammation of lung tissue accompanied by in
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/output_image/pneumonia.jpg" alt="linearly separable data">
 
+# Read file
+
+in this step I'm going to copy file from drive to local google colab bacause if you're running file from drive it's going to be much slower compared to local directory in colab.
+
 ```python
 zip_path = '/content/drive/My\ Drive/BCML/FinalProject/chest_xray_backup.zip'
 
@@ -25,6 +29,7 @@ zip_path = '/content/drive/My\ Drive/BCML/FinalProject/chest_xray_backup.zip'
 !rm /content/chest_xray_backup.zip
 ```
 
+# Importing Necessary Libraries
 
 ```python
 import matplotlib.pyplot as plt
@@ -56,8 +61,10 @@ from keras.models import load_model
 
 ```
 
-# **Definisi Function**
+# **Definition Function**
 
+Code below it's a function that I used in this project. function get_training_data it's for splitting data between train, val, and test then give label to data **'0'** for **normal** and **'1'** for **pneumonia**.
+compose_dataset is a function for reshaping data. Imagedatagenerator is a function for visualisation image after image augmentation
 
 ```python
 labels = [ 'NORMAL','PNEUMONIA']
@@ -131,7 +138,7 @@ def imagedatagenerator(param):
     return
 ```
 
-# **Mengambil Data Image**
+# **Get Data Image**
 
 
 ```python
@@ -145,14 +152,35 @@ val = get_training_data(dataset_dir_val)
 train[0][0]
 ```
 
+Output:
+
+```python
+array([[61, 68, 75, ..., 26, 12,  0],
+       [63, 68, 78, ..., 23, 12,  0],
+       [62, 69, 78, ..., 25, 16,  0],
+       ...,
+       [ 0,  0,  0, ...,  0,  0,  0],
+       [ 0,  0,  0, ...,  0,  0,  0],
+       [ 0,  0,  0, ...,  0,  0,  0]], dtype=uint8)
+```
 
 ```python
 labels[train[0][1]]
 ```
 
+Output:
+
+```python
+NORMAL
+```
 
 ```python
 labels[train[-1][1]]
+```
+Output:
+
+```python
+PNEUMONIA
 ```
 
 
@@ -165,6 +193,23 @@ val_df = pd.DataFrame(val, columns=['image', 'label'])
 
 ```python
 print(train_df)
+```
+
+Output:
+
+```python
+                                                  image label
+0     [[61, 68, 75, 76, 84, 89, 89, 93, 91, 88, 86, ...     0
+1     [[7, 6, 6, 6, 5, 6, 5, 6, 5, 6, 5, 6, 5, 5, 5,...     0
+2     [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,...     0
+3     [[78, 78, 75, 139, 169, 137, 120, 116, 117, 12...     0
+4     [[33, 26, 32, 37, 44, 50, 53, 52, 58, 60, 63, ...     0
+...                                                 ...   ...
+5211  [[31, 29, 29, 31, 31, 34, 34, 31, 29, 28, 28, ...     1
+5212  [[16, 15, 20, 21, 21, 254, 23, 19, 255, 20, 21...     1
+5213  [[16, 17, 19, 19, 18, 17, 20, 20, 22, 104, 246...     1
+5214  [[0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 8, 13, 30, 43,...     1
+5215  [[3, 4, 9, 13, 18, 21, 21, 21, 24, 26, 30, 42,...     1
 ```
 
 # **Visualisasi Data**
@@ -188,6 +233,7 @@ plt.title('Validation data')
 plt.show()
 ```
 
+<img src="{{ site.url }}{{ site.baseurl }}/images/output_image/countlabel.jpg" alt="linearly separable data">
 
 ```python
 plt.figure(figsize = (5,5))
