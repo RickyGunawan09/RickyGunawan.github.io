@@ -4,5 +4,7 @@ title: "Machine Learning Posts by Tags"
 permalink: /machine-learning/
 author_profile: true
 header:
-    image: "/images/testgambar.png"
+    image: "/images/testgambar.jpg"
 ---
+
+
