@@ -13,7 +13,7 @@ an acute disease that is marked by inflammation of lung tissue accompanied by in
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/output_image/pneumonia.jpg" alt="linearly separable data">
 
-___
+***
 
 # Read file
 
@@ -31,7 +31,7 @@ zip_path = '/content/drive/My\ Drive/BCML/FinalProject/chest_xray_backup.zip'
 !rm /content/chest_xray_backup.zip
 ```
 
-___
+***
 
 # Importing Necessary Libraries
 
@@ -65,7 +65,7 @@ from keras.models import load_model
 
 ```
 
-___
+***
 
 # **Definition Function**
 
@@ -144,7 +144,7 @@ def imagedatagenerator(param):
     return
 ```
 
-___
+***
 
 # **Get Data Image**
 
@@ -155,7 +155,7 @@ test = get_training_data(dataset_dir_test)
 val = get_training_data(dataset_dir_val)
 ```
 
-___
+***
 
 Print np array photo
 
@@ -175,7 +175,7 @@ array([[61, 68, 75, ..., 26, 12,  0],
        [ 0,  0,  0, ...,  0,  0,  0]], dtype=uint8)
 ```
 
-___
+***
 
 Print label normal
 
@@ -189,7 +189,7 @@ Output:
 NORMAL
 ```
 
-___
+***
 
 Print label pneumonia
 
@@ -203,7 +203,7 @@ Output:
 PNEUMONIA
 ```
 
-___
+***
 
 Change data to dataframe 
 
@@ -235,7 +235,7 @@ Output:
 5215  [[3, 4, 9, 13, 18, 21, 21, 21, 24, 26, 30, 42,...     1
 ```
 
-___
+***
 
 # **Visualization Data**
 
@@ -262,7 +262,7 @@ plt.show()
 
 The data seems imbalanced . To increase the no. of training examples, we will use data augmentation
 
-___
+***
 
 Previewing the images of both the classes
 
@@ -278,7 +278,7 @@ plt.title(labels[train[-1][1]])
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/output_image/sample.JPG" alt="linearly separable data">
 
-___
+***
 
 # **Feature Engineering**
 
@@ -302,7 +302,7 @@ print('Validation data shape: {}, Labels shape: {}'.format(feature_val.shape, la
 
 we can see the shape it's changing, its necessary if we want to procces it for CNN.
 
-___
+***
 
 # Data Augmentation
 In order to avoid overfitting problem, we need to expand artificially our dataset. We can make your existing dataset even larger. The idea is to alter the training data with small transformations to reproduce the variations. Approaches that alter the training data in ways that change the array representation while keeping the label the same are known as data augmentation techniques. Some popular augmentations people use are grayscales, horizontal flips, vertical flips, random crops, color jitters, translations, rotations, and much more. By applying just a couple of these transformations to our training data, we can easily double or triple the number of training examples and create a very robust model.
@@ -326,7 +326,7 @@ label_val = to_categorical(label_val)
 
 I use to_categorical function from keras to make categorical label.
 
-___
+***
 
 ## **Visualisasi Image Data Generator yang di gunakan**
 
@@ -348,7 +348,7 @@ For the data augmentation, i choosed to :
 4. Randomly shift images vertically by 10% of the height
 5. Randomly flip images horizontally. Once our model is ready, we fit the training dataset.
 
-___
+***
 
 # **Model CNN**
 
@@ -389,7 +389,7 @@ model.summary()
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/output_image/summary_model.JPG" alt="linearly separable data">
 
-___
+***
 
 I Want to see conv2D layer in my model so I print it for I use next.
 
@@ -405,7 +405,7 @@ for layer in model.layers:
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/output_image/conv_layer.JPG" alt="linearly separable data">
 
-___
+***
 
 ## **Visualization Layer Filter CNN 1**
 
@@ -431,7 +431,7 @@ for i in range(8):
 
 I want to know the filter that cnn use in first conv2d. so i can know about feature map and how cnn works.
 
-___
+***
 
 ## **Visualization Layer Filter CNN 2**
 
@@ -456,7 +456,7 @@ for i in range(8):
 
 as you can see filter in conv2D it's diffrent although the kernel and neuron it's a same. this is very interesting because CNN randomly setting a filter for every run model.
 
-___
+***
 
 ## **Result of implementation filter CNN 1**
 
@@ -485,7 +485,7 @@ for i in range(8):
 
 now you can see how filter change image in the first Conv2D layer 
 
-___
+***
 
 ## **Result of implementation filter CNN 2**
 
@@ -507,7 +507,7 @@ for i in range(8):
 
 you can see how filter change image in the second Conv2D layer. now, we can conclude that image change for every conv2d and for every epoch that we define.
 
-___
+***
 
 # **Training Model with Validation Set**
 
@@ -539,7 +539,7 @@ history = model.fit(train_datagen.flow(feature_train,label_train, batch_size=4),
 <img src="{{ site.url }}{{ site.baseurl }}/images/output_image/tenserboard.JPG" alt="linearly separable data">
 
 
-___
+***
 
 # **Evaluate Model for Testing Datasets**
 
@@ -553,7 +553,7 @@ print("Accuracy of the model is - " , model.evaluate(feature_test,label_test)[1]
 
 As you can see we get 90.86% accuracy from Test dataset.
 
-___
+***
 
 ```python
 predictions = np.argmax(model.predict(feature_test), axis=-1)
@@ -596,7 +596,7 @@ print(clas_r)
 
 Visualization for Confusion Matrix and Classification Report
 
-___
+***
 
 # **Visualization Data Validation**
 
