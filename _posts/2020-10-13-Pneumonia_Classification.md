@@ -3,7 +3,7 @@ title: "Pneumonia Classification"
 date: 2020-10-13
 tags: [Pneumonia,X-ray, data science, machine learning, Computer Vision]
 header:
-  image: "/images/xray.jpg"
+  image: "/images/xrayresize.jpg"
 excerpt: "Pneumonia,X-ray, data science, machine learning, Computer Vision"
 mathjax: "true"
 ---
