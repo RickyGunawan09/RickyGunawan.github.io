@@ -3,7 +3,7 @@ title: "Pneumonia Classification"
 date: 2020-10-13
 tags: [Pneumonia,X-ray, data science, machine learning, Computer Vision]
 header:
-  image: "/images/xrayresize.jpg"
+  image: "/images/paruparu.jpg"
 excerpt: "Pneumonia,X-ray, data science, machine learning, Computer Vision"
 mathjax: "true"
 ---
@@ -621,6 +621,8 @@ for i,x in enumerate(feature_val):
 
 as you can see in visualization above, how predict works and we can see label before and predict
 
+***
+
 # **RUC-AUC Curve**
 
 AUC - ROC curve is a performance measurement for classification problem at various thresholds settings. ROC is a probability curve and AUC represents degree or measure of separability. It tells how much model is capable of distinguishing between classes.
@@ -683,3 +685,5 @@ plt.show()
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/output_image/roc_train.JPG" alt="linearly separable data">
 
+***
+Thank you for read my experiment about this dataset. you can also running this program from my heroku web in this [link](https://shielded-stream-99265.herokuapp.com/)
