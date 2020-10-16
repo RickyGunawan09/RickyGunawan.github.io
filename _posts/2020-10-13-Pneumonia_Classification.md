@@ -127,9 +127,6 @@ def imagedatagenerator(param):
     elif param == "height_shift_range":
         datagen_height_shift_range = ImageDataGenerator(height_shift_range =0.1)
         it = datagen_height_shift_range.flow(input_image_DG, batch_size=1)
-    elif param == "horizontal_flip":
-        datagen_horizontal_flip = ImageDataGenerator(horizontal_flip =True)
-        it = datagen_horizontal_flip.flow(input_image_DG, batch_size=1)
     elif param == "All":
         datagen_all = ImageDataGenerator(rotation_range =30,zoom_range =0.2,width_shift_range =0.1,height_shift_range =0.1,horizontal_flip =True)
         it = datagen_all.flow(input_image_DG, batch_size=1)
@@ -311,8 +308,8 @@ In order to avoid overfitting problem, we need to expand artificially our datase
 train_datagen = ImageDataGenerator(rotation_range = 30,  # randomly rotate images in the range (degrees, 0 to 180)
                                    zoom_range = 0.2, # Randomly zoom image 
                                    width_shift_range=0.1,  # randomly shift images horizontally (fraction of total width)
-                                   height_shift_range=0.1,  # randomly shift images vertically (fraction of total height)
-                                   horizontal_flip = True)  # randomly flip images
+                                   height_shift_range=0.1  # randomly shift images vertically (fraction of total height)
+                                   )  
 
 train_datagen.fit(feature_train)
 ```
@@ -332,7 +329,7 @@ I use to_categorical function from keras to make categorical label.
 
 
 ```python
-list_param=["rotation_range","zoom_range","width_shift_range","height_shift_range","horizontal_flip","All"]
+list_param=["rotation_range","zoom_range","width_shift_range","height_shift_range","All"]
 
 for i in list_param:
     imagedatagenerator(i)
