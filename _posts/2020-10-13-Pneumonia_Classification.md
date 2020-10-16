@@ -335,7 +335,7 @@ for i in list_param:
     imagedatagenerator(i)
 ```
 
-<img src="{{ site.url }}{{ site.baseurl }}/images/output_image/image_aug.JPG" alt="linearly separable data">
+<img src="{{ site.url }}{{ site.baseurl }}/images/output_image/image_aug_baru.JPG" alt="linearly separable data">
 
 For the data augmentation, i choosed to :
 
@@ -343,7 +343,8 @@ For the data augmentation, i choosed to :
 2. Randomly Zoom by 20% some training images
 3. Randomly shift images horizontally by 10% of the width
 4. Randomly shift images vertically by 10% of the height
-5. Randomly flip images horizontally. Once our model is ready, we fit the training dataset.
+
+Once our model is ready, we fit the training dataset.
 
 ***
 
